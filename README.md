@@ -1,27 +1,17 @@
-# BookingsApp
+# Bookings App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.7.
+A simple web application that manages bookings.
 
-## Development server
+Built with:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+* NodeJS
+* Angular 5
+* MongoDB
 
-## Code scaffolding
+## References
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Here are a few articles that helped me set some things up:
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+* [Setting up testing with Jest](https://www.xfive.co/blog/testing-angular-faster-jest/)
+* [Setting up dotenv with Angular](https://medium.com/@natchiketa/angular-cli-and-os-environment-variables-4cfa3b849659)
+* NodeJS server setup with Angular
