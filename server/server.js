@@ -13,9 +13,8 @@ const port = process.env.PORT || 3000;
 app.use(bodyParser.json());
 app.use(cors());
 
-const booking = require("./db/booking.model");
-const bookingRoutes = require("./routes/booking.route");
-app.use("/api/bookings", bookingRoutes);
+// init routes
+const router = require("./router")(app);
 
 // connect to mongodb
 const mongoUrl = process.env.MONGO_URL || "mongodb://localhost:27017/app";
@@ -38,3 +37,5 @@ db.once("open", () => {
     console.log(`Server successfully initialised on port ${port}`);
   });
 });
+
+module.exports = app;

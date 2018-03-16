@@ -1,8 +1,6 @@
-const express = require("express");
-const router = express.Router();
-const path = require("path");
+const router = require("express").Router();
 
-const BookingModel = require("../db/booking.model").model;
+const BookingModel = require("../../db/booking.model").model;
 const ObjectId = require("mongoose").Types.ObjectId;
 
 // get all
