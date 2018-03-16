@@ -3,6 +3,7 @@ const router = express.Router();
 const path = require("path");
 
 const BookingModel = require("../db/booking.model").model;
+const ObjectId = require("mongoose").Types.ObjectId;
 
 // get all
 router.get("/", (req, res) => {
@@ -17,17 +18,25 @@ router.get("/", (req, res) => {
 // get one
 router.get("/:id", (req, res) => {
   const id = req.params.id;
-  console.log(id);
-  res.send(`This is booking ${id}`);
+  BookingModel.findOne({ _id: new ObjectId(id.toString()) }, (err, booking) => {
+    if (err) {
+      res.status(500).send("An error occurred while processing your request.");
+      console.error(err);
+    } else if (booking == null) {
+      res.status(404).send("Booking not found.");
+    } else {
+      res.status(200).send(booking);
+    }
+  });
 });
 
 // post
-router.get("/", (req, res) => {});
+router.post("/", (req, res) => {});
 
 // put
-router.get("/:id", (req, res) => {});
+router.put("/:id", (req, res) => {});
 
 // delete
-router.get("/:id", (req, res) => {});
+router.delete("/:id", (req, res) => {});
 
 module.exports = router;
