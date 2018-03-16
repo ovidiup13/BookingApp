@@ -11,6 +11,7 @@ const port = process.env.PORT || 3000;
 // middlewares
 app.use(bodyParser.json());
 
+const booking = require("./db/booking.model");
 const bookingRoutes = require("./routes/booking.route");
 app.use("/api/bookings", bookingRoutes);
 
