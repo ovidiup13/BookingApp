@@ -3,6 +3,7 @@ require("dotenv").config();
 
 const express = require("express");
 const bodyParser = require("body-parser");
+const cors = require("cors");
 
 // define app
 const app = express();
@@ -10,6 +11,7 @@ const port = process.env.PORT || 3000;
 
 // middlewares
 app.use(bodyParser.json());
+app.use(cors());
 
 const booking = require("./db/booking.model");
 const bookingRoutes = require("./routes/booking.route");
