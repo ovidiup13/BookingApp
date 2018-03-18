@@ -7,12 +7,12 @@ const BookingSchema = new Schema(
     // define schema here
     startTime: {
       type: Date,
-      default: Date.now,
+      // default: Date.now,
       required: [true, "Start time is required"]
     },
     endTime: {
       type: Date,
-      default: Date.now,
+      // default: Date.now,
       required: [true, "End time is required"]
     },
     service: { type: String, enum: ["haircut", "meeting", "reservation"] },
@@ -26,9 +26,4 @@ const BookingSchema = new Schema(
   { collection: "bookings" }
 );
 
-const BookingModel = mongoose.model("BookingModel", BookingSchema);
-
-module.exports = {
-  schema: BookingSchema,
-  model: BookingModel
-};
+module.exports = mongoose.model("BookingModel", BookingSchema);

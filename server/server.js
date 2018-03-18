@@ -1,23 +1,23 @@
-// setup environment
-require("dotenv").config();
-
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
+const config = require("./config");
+
 // define app
 const app = express();
-const port = process.env.PORT || 3000;
+const port = config.port;
 
 // middlewares
 app.use(bodyParser.json());
 app.use(cors());
 
 // init routes
-const router = require("./router")(app);
+const booking = require("./routes/booking-route");
+app.use("/api/bookings", booking);
 
 // connect to mongodb
-const mongoUrl = process.env.MONGO_URL || "mongodb://localhost:27017/app";
+const mongoUrl = config.mongoUrl;
 const mongoose = require("mongoose");
 mongoose.connect(mongoUrl);
 const db = mongoose.connection;
