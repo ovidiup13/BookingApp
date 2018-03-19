@@ -6,7 +6,9 @@ exports.booking_list = (req, res) => {
   BookingModel.find({}, (err, bookings) => {
     if (err) {
       res.status(500);
-      res.send("An error occurred while processing your request.");
+      res.send(
+        JSON.stringify("An error occurred while processing your request.")
+      );
     }
     res.status(200);
     res.send(bookings);
@@ -19,10 +21,12 @@ exports.booking_detail = (req, res) => {
   BookingModel.findOne({ _id: new ObjectId(id.toString()) }, (err, booking) => {
     if (err) {
       res.status(500);
-      res.send("An error occurred while processing your request.");
+      res.send(
+        JSON.stringify("An error occurred while processing your request.")
+      );
     } else if (booking == null) {
       res.status(404);
-      res.send("Booking not found.");
+      res.send(JSON.stringify("Booking not found."));
     } else {
       res.status(200);
       res.send(booking);
@@ -36,10 +40,10 @@ exports.booking_create = (req, res) => {
   BookingModel.create(req.body, (err, value) => {
     if (err) {
       res.status(500);
-      res.send("Unable to create booking");
+      res.send(JSON.stringify("Unable to create booking"));
     } else {
       res.status(201);
-      res.send("Successfully created booking");
+      res.send(JSON.stringify("Successfully created booking"));
     }
   });
 };
@@ -53,10 +57,10 @@ exports.booking_update = (req, res) => {
     console.log(value);
     if (err) {
       res.status(500);
-      res.send("An error occurred when updating booking.");
+      res.send(JSON.stringify("An error occurred when updating booking."));
     } else {
       res.status(200);
-      res.send("Sucessfully updated booking.");
+      res.send(JSON.stringify("Sucessfully updated booking."));
     }
   });
 };
@@ -66,10 +70,10 @@ exports.booking_delete = (req, res) => {
   BookingModel.remove({ _id: id }, (err, result) => {
     if (err) {
       res.status(500);
-      res.send("An error occurred when removing the booking.");
+      res.send(JSON.stringify("An error occurred when removing the booking."));
     } else {
       res.status(200);
-      res.send("Successfully removed booking.");
+      res.send(JSON.stringify("Successfully removed booking."));
     }
   });
 };
