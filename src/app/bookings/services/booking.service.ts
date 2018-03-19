@@ -13,4 +13,8 @@ export class BookingService {
   getBookings(): Observable<Booking[]> {
     return this.http.get<Booking[]>(`${BookingService.API}/bookings`);
   }
+
+  getBooking(id: string): Observable<Booking> {
+    return this.http.get<Booking>(`${BookingService.API}/bookings/${id}`);
+  }
 }

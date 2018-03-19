@@ -33,8 +33,7 @@ export class BookingsDashboardComponent implements OnInit {
   }
 
   handleView(event: Booking) {
-    console.log("TODO: navigate to booking", event);
-    // this.router.navigate(["/bookings", event._id]);
+    this.router.navigate(["/bookings", event._id]);
   }
 
   handleDelete(event: Booking) {

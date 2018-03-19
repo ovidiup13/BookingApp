@@ -1,15 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { BookingService } from "../../services/booking.service";
+import { Booking } from "../../models/booking.interface";
+import { Observable } from "rxjs/Observable";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
-  selector: 'app-booking-viewer',
-  templateUrl: './booking-viewer.component.html',
-  styleUrls: ['./booking-viewer.component.css']
+  selector: "app-booking-viewer",
+  template: `
+    <div>
+      <h1 class="title">Update booking</h1>
+      {{booking$ | json}}
+    </div>
+  `,
+  styleUrls: ["./booking-viewer.component.css"]
 })
 export class BookingViewerComponent implements OnInit {
+  booking$: Observable<Booking>;
 
-  constructor() { }
+  constructor(
+    private route: ActivatedRoute,
+    private bookingService: BookingService
+  ) {}
 
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.booking$ = this.bookingService.getBooking(params.id);
+    });
   }
-
 }
