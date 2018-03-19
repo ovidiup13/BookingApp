@@ -17,4 +17,11 @@ export class BookingService {
   getBooking(id: string): Observable<Booking> {
     return this.http.get<Booking>(`${BookingService.API}/bookings/${id}`);
   }
+
+  updateBooking(booking: Booking): Observable<any> {
+    return this.http.put<any>(
+      `${BookingService.API}/bookings/${booking._id}`,
+      booking
+    );
+  }
 }

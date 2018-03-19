@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { BookingService } from "../../services/booking.service";
 import { Booking } from "../../models/booking.interface";
 import { Observable } from "rxjs/Observable";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
   selector: "app-booking-viewer",
@@ -23,6 +23,7 @@ export class BookingViewerComponent implements OnInit {
   booking$: Observable<Booking>;
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private bookingService: BookingService
   ) {}
@@ -34,11 +35,21 @@ export class BookingViewerComponent implements OnInit {
   }
 
   handleCancel(event: any) {
-    console.log("TODO: navigate to dashboard");
+    this.router.navigate(["/bookings"]);
   }
 
   handleUpdate(event: Booking) {
-    console.log("TODO: update booking", event);
+    // update booking
+    // if successful, navigate to dashboard
+    this.bookingService.updateBooking(event).subscribe(
+      () => {
+        this.router.navigate(["/bookings"]);
+      },
+      (error: any) => {
+        // TODO: handle error
+        console.error(error);
+      }
+    );
   }
 
   handleDelete(event: Booking) {

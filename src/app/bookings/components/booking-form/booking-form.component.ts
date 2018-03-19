@@ -138,7 +138,6 @@ export class BookingFormComponent implements OnChanges {
   }
 
   deleteBooking() {
-    console.log("TODO: delete booking");
     this.delete.emit(this.booking);
   }
 }
