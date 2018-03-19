@@ -2,6 +2,7 @@ export interface Booking {
   _id: string;
   customer: Customer;
   resource: string;
+  service: string;
   startTime: Date;
   endTime: Date;
 }

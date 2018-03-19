@@ -9,7 +9,11 @@ import { ActivatedRoute } from "@angular/router";
   template: `
     <div>
       <h1 class="title">Update booking</h1>
-      <app-booking-form [booking]="booking" (cancel)="handleCancel($event)" (update)="handleUpdate($event)">
+      <app-booking-form
+        [booking]="booking$ | async" 
+        (cancel)="handleCancel($event)" 
+        (update)="handleUpdate($event)" 
+        (delete)="handleDelete($event)">
       </app-booking-form>
     </div>
   `,
@@ -35,5 +39,9 @@ export class BookingViewerComponent implements OnInit {
 
   handleUpdate(event: Booking) {
     console.log("TODO: update booking", event);
+  }
+
+  handleDelete(event: Booking) {
+    console.log("TODO: delete booking", event);
   }
 }
