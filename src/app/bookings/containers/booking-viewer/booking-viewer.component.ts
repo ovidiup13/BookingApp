@@ -9,7 +9,8 @@ import { ActivatedRoute } from "@angular/router";
   template: `
     <div>
       <h1 class="title">Update booking</h1>
-      {{booking$ | json}}
+      <app-booking-form [booking]="booking" (cancel)="handleCancel($event)" (update)="handleUpdate($event)">
+      </app-booking-form>
     </div>
   `,
   styleUrls: ["./booking-viewer.component.css"]
@@ -26,5 +27,13 @@ export class BookingViewerComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.booking$ = this.bookingService.getBooking(params.id);
     });
+  }
+
+  handleCancel(event: any) {
+    console.log("TODO: navigate to dashboard");
+  }
+
+  handleUpdate(event: Booking) {
+    console.log("TODO: update booking", event);
   }
 }

@@ -7,6 +7,8 @@ import { BookingService } from "../../services/booking.service";
 import { Booking } from "../../models/booking.interface";
 import { Observable } from "rxjs/Observable";
 import { of } from "rxjs/observable/of";
+import { BookingFormComponent } from "../../components/booking-form/booking-form.component";
+import { ReactiveFormsModule } from "@angular/forms";
 
 let bookingServiceStub: Partial<BookingService>;
 
@@ -22,8 +24,12 @@ describe("BookingViewerComponent", () => {
   beforeEach(
     async(() => {
       TestBed.configureTestingModule({
-        imports: [HttpClientTestingModule, RouterTestingModule.withRoutes([])],
-        declarations: [BookingViewerComponent],
+        imports: [
+          HttpClientTestingModule,
+          RouterTestingModule.withRoutes([]),
+          ReactiveFormsModule
+        ],
+        declarations: [BookingViewerComponent, BookingFormComponent],
         providers: [{ provide: BookingService, useValue: bookingServiceStub }]
       }).compileComponents();
     })
