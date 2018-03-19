@@ -56,12 +56,20 @@ exports.booking_update = (req, res) => {
       res.send("An error occurred when updating booking.");
     } else {
       res.status(200);
-      res.send("Sucessfully updated booking");
+      res.send("Sucessfully updated booking.");
     }
   });
 };
 
 exports.booking_delete = (req, res) => {
   const id = req.params.id;
-  res.status(200).send();
+  BookingModel.remove({ _id: id }, (err, result) => {
+    if (err) {
+      res.status(500);
+      res.send("An error occurred when removing the booking.");
+    } else {
+      res.status(200);
+      res.send("Successfully removed booking.");
+    }
+  });
 };
