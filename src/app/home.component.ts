@@ -4,8 +4,7 @@ import { Component } from "@angular/core";
   selector: "app-home",
   template: `
     <div>
-      <h1 class="title">Booking Application</h1>
-      <button class="btn btn-primary">Hello</button>
+      <h1 class="title">Booking Management</h1>
     </div>
   `
 })
