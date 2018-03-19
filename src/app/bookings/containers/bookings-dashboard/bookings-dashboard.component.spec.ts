@@ -1,11 +1,13 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { RouterTestingModule } from "@angular/router/testing";
 import { Observable } from "rxjs/Observable";
 import { of } from "rxjs/observable/of";
 
 import { BookingsDashboardComponent } from "./bookings-dashboard.component";
 import { BookingService } from "../../services/booking.service";
 import { Booking } from "../../models/booking.interface";
+import { BookingDetailComponent } from "../../components/booking-detail/booking-detail.component";
 
 let bookingServiceStub: Partial<BookingService>;
 
@@ -21,8 +23,8 @@ describe("BookingsDashboardComponent", () => {
   beforeEach(
     async(() => {
       TestBed.configureTestingModule({
-        imports: [HttpClientTestingModule],
-        declarations: [BookingsDashboardComponent],
+        imports: [HttpClientTestingModule, RouterTestingModule.withRoutes([])],
+        declarations: [BookingsDashboardComponent, BookingDetailComponent],
         providers: [{ provide: BookingService, useValue: bookingServiceStub }]
       }).compileComponents();
     })
