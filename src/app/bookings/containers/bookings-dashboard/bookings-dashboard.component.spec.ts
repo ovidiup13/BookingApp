@@ -1,17 +1,32 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { Observable } from "rxjs/Observable";
+import { of } from "rxjs/observable/of";
 
-import { BookingsDashboardComponent } from './bookings-dashboard.component';
+import { BookingsDashboardComponent } from "./bookings-dashboard.component";
+import { BookingService } from "../../services/booking.service";
+import { Booking } from "../../models/booking.interface";
 
-describe('BookingsDashboardComponent', () => {
+let bookingServiceStub: Partial<BookingService>;
+
+describe("BookingsDashboardComponent", () => {
   let component: BookingsDashboardComponent;
   let fixture: ComponentFixture<BookingsDashboardComponent>;
+  bookingServiceStub = {
+    getBookings(): Observable<Booking[]> {
+      return of(null);
+    }
+  };
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ BookingsDashboardComponent ]
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        imports: [HttpClientTestingModule],
+        declarations: [BookingsDashboardComponent],
+        providers: [{ provide: BookingService, useValue: bookingServiceStub }]
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(BookingsDashboardComponent);
@@ -19,7 +34,7 @@ describe('BookingsDashboardComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it("should create", () => {
+    expect(component).toBeDefined();
   });
 });
