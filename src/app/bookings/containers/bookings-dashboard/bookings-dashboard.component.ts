@@ -44,6 +44,11 @@ export class BookingsDashboardComponent implements OnInit {
   }
 
   handleDelete(event: Booking) {
-    console.log("TODO: delete booking", event);
+    this.bookingService.deleteBooking(event._id).subscribe(
+      () => {
+        this.bookings$ = this.bookingService.getBookings();
+      },
+      (error: any) => {}
+    );
   }
 }

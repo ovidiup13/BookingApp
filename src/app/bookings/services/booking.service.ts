@@ -28,4 +28,8 @@ export class BookingService {
   createBooking(booking: Partial<Booking>): Observable<any> {
     return this.http.post<any>(`${BookingService.API}/bookings`, booking);
   }
+
+  deleteBooking(id: string): Observable<any> {
+    return this.http.delete<any>(`${BookingService.API}/bookings/${id}`);
+  }
 }

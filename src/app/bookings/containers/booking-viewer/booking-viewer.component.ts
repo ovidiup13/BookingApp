@@ -53,6 +53,14 @@ export class BookingViewerComponent implements OnInit {
   }
 
   handleDelete(event: Booking) {
-    console.log("TODO: delete booking", event);
+    this.bookingService.deleteBooking(event._id).subscribe(
+      () => {
+        this.router.navigate(["/bookings"]);
+      },
+      // TODO: handle error
+      (error: any) => {
+        console.error(error);
+      }
+    );
   }
 }
