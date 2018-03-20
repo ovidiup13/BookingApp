@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const path = require("path");
 
 const config = require("./config");
 
@@ -15,6 +16,12 @@ app.use(cors());
 // init routes
 const booking = require("./routes/booking-route");
 app.use("/api/bookings", booking);
+
+// static files
+app.use(express.static(path.join(__dirname, "..", "dist")));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "..", "dist/index.html"));
+});
 
 // connect to mongodb
 const mongoUrl = config.mongoUrl;

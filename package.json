@@ -3,9 +3,10 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "yarn run config-dev && ng serve",
+    "start": "yarn build && node server/server.js",
     "start-server": "nodemon server/server.js",
-    "build": "ng build --prod",
+    "serve": "yarn config-dev && ng serve",
+    "build": "yarn config-dev && ng build",
     "test": "jest",
     "test:watch": "jest --watch",
     "config-dev": "ts-node scripts/set-env.ts --environment=dev"
