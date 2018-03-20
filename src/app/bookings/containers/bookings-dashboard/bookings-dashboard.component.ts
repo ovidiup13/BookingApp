@@ -8,7 +8,10 @@ import { Router } from "@angular/router";
   selector: "app-bookings-dashboard",
   template: `
     <div>
+    <div class="title">
       <h1 class="title">Bookings Dashboard</h1>
+      <button class="btn btn-primary" (click)="createBooking()">Create booking</button>
+    </div>
 
       <div class="booking-list">
             <app-booking-detail 
@@ -30,6 +33,10 @@ export class BookingsDashboardComponent implements OnInit {
 
   ngOnInit() {
     this.bookings$ = this.bookingService.getBookings();
+  }
+
+  createBooking() {
+    this.router.navigate(["/bookings/new"]);
   }
 
   handleView(event: Booking) {

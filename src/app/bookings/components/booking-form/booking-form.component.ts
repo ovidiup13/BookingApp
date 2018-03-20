@@ -20,9 +20,6 @@ import { Booking } from "../../models/booking.interface";
   template: `
     <div>
       <form [formGroup]="bookingForm" (submit)="updateBooking()" novalidate>
-
-      <pre>{{bookingForm.value | json}}</pre>
-
         <h4>Service</h4>
 
         <div class="form-group">
@@ -75,11 +72,13 @@ import { Booking } from "../../models/booking.interface";
           <input id="end-date" class="form-control" type="datetime-local" formControlName="endTime">
         </div>
 
-        <button type="submit" class="btn btn-primary" [disabled]="this.bookingForm.invalid">Update</button>
+
+        <button *ngIf="!newBooking" type="submit" class="btn btn-primary" [disabled]="this.bookingForm.invalid">Update</button>
+        <button *ngIf="newBooking" type="submit" class="btn btn-primary" [disabled]="this.bookingForm.invalid">Create</button>
 
         <!-- the false value in (click) is a hack to avoid redirect -->
         <a class="btn btn-secondary" href="#" (click)="cancelUpdate(); false" role="button">Cancel</a>
-        <a class="btn btn-danger" href="#" (click)="deleteBooking(); false" role="button">Delete</a>
+        <a *ngIf="!newBooking" class="btn btn-danger" href="#" (click)="deleteBooking(); false" role="button">Delete</a>
       </form>
 
 
@@ -89,6 +88,8 @@ import { Booking } from "../../models/booking.interface";
 })
 export class BookingFormComponent implements OnChanges {
   @Input() booking: Booking;
+  @Input() newBooking: boolean;
+  @Output() create: EventEmitter<any> = new EventEmitter();
   @Output() cancel: EventEmitter<any> = new EventEmitter();
   @Output() update: EventEmitter<Booking> = new EventEmitter();
   @Output() delete: EventEmitter<Booking> = new EventEmitter();
@@ -100,11 +101,11 @@ export class BookingFormComponent implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    const newValue = changes.booking.currentValue;
+    const newBooking = changes.booking;
     // update form with booking data
-    if (newValue != null) {
+    if (newBooking != null && newBooking.currentValue != null) {
       this.bookingForm.reset();
-      this.bookingForm.patchValue(newValue);
+      this.bookingForm.patchValue(newBooking.currentValue);
     }
   }
 
@@ -129,12 +130,17 @@ export class BookingFormComponent implements OnChanges {
 
   updateBooking() {
     // new booking object with form values and id
-    const updated: Booking = {
-      ...this.bookingForm.value,
-      _id: this.booking._id
+    const updated = {
+      ...this.bookingForm.value
     };
 
-    this.update.emit(updated);
+    // handle create vs update
+    if (this.booking != null) {
+      updated._id = this.booking._id;
+      this.update.emit(updated);
+    } else {
+      this.create.emit(updated);
+    }
   }
 
   deleteBooking() {

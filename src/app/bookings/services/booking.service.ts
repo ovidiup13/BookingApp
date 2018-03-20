@@ -24,4 +24,8 @@ export class BookingService {
       booking
     );
   }
+
+  createBooking(booking: Partial<Booking>): Observable<any> {
+    return this.http.post<any>(`${BookingService.API}/bookings`, booking);
+  }
 }

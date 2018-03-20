@@ -9,6 +9,7 @@ import { BookingViewerComponent } from "./containers/booking-viewer/booking-view
 import { BookingDetailComponent } from "./components/booking-detail/booking-detail.component";
 import { BookingService } from "./services/booking.service";
 import { BookingFormComponent } from "./components/booking-form/booking-form.component";
+import { BookingCreatorComponent } from "./containers/booking-creator/booking-creator.component";
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
       {
         path: "",
         component: BookingsDashboardComponent
+      },
+      {
+        path: "new",
+        component: BookingCreatorComponent
       },
       {
         path: ":id",
@@ -37,7 +42,8 @@ const routes: Routes = [
     BookingsDashboardComponent,
     BookingViewerComponent,
     BookingDetailComponent,
-    BookingFormComponent
+    BookingFormComponent,
+    BookingCreatorComponent
   ],
   providers: [BookingService]
 })
