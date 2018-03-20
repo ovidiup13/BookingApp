@@ -9,6 +9,7 @@ import { NotFoundComponent } from "./not-found.component";
 
 // modules
 import { BookingsModule } from "./bookings/bookings.module";
+import { NavComponent } from './nav/nav.component';
 
 const routes: Routes = [
   {
@@ -23,7 +24,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, NotFoundComponent],
+  declarations: [AppComponent, HomeComponent, NotFoundComponent, NavComponent],
   imports: [BrowserModule, RouterModule.forRoot(routes), BookingsModule],
   providers: [],
   bootstrap: [AppComponent]

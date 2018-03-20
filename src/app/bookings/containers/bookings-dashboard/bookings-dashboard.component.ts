@@ -7,11 +7,11 @@ import { Router } from "@angular/router";
 @Component({
   selector: "app-bookings-dashboard",
   template: `
-    <div>
-    <div class="title">
-      <h1 class="title">Bookings Dashboard</h1>
-      <button class="btn btn-primary" (click)="createBooking()">Create booking</button>
-    </div>
+    <div class="content">
+      <div class="title">
+        <h1>Bookings Dashboard</h1>
+        <button class="btn btn-primary" (click)="createBooking()">Create booking</button>
+      </div>
 
       <div class="booking-list">
             <app-booking-detail 
@@ -21,7 +21,6 @@ import { Router } from "@angular/router";
               (delete)="handleDelete($event)">
             </app-booking-detail>
       </div>
-
     </div>
   `,
   styleUrls: ["./bookings-dashboard.component.css"]

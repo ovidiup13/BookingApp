@@ -5,6 +5,8 @@ import { Component } from "@angular/core";
   template: `
     <div>
       <h1 class="title">Booking Management</h1>
+      <p>Hello and welcome to the booking management web app!</p>
+      <p>Click the <b>Dashboard</b> or <b>New Booking</b> links in the navbar to get started. </p>
     </div>
   `
 })
