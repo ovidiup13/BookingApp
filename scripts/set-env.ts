@@ -26,8 +26,7 @@ let targetFileFD;
 
 const data = `export const environment = {
   production: false,
-  api: "${process.env.API_URL}",
-  mongoUrl: "${process.env.MONGO_URL}"
+  api: "${process.env.API_URL || "http://localhost:3000/api"}"
 };\n`;
 
 const dir = path.join(appRootPath, srcFolder, targetPath);
