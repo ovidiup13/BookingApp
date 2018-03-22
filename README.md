@@ -27,11 +27,13 @@ environment variables. If you want to provide a custom MongoDB database or REST
 API endpoint, create a _.env_ file in the root of the directory (it is ignored
 by git).
 
+**If you are using a MongoDB database that requires users to sign in, you must create the .env file in the root of your project and add the Mongo URI, as specified below.**
+
 Add the following lines:
 
 ```bash
 API_URL=http://localhost:3000/api
-MONGO_URL=mongo://username:password@mongohost.com
+MONGO_URL=mongo://username:password@mongohost:port/database
 ```
 
 The _API_URL_ points to the NodeJS server. Defaults to
