@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs/Observable";
 import { Booking } from "../models/booking.interface";
-import { environment } from "../../../environments/environment.dev";
+import { environment } from "../../../environments/environment";
 
 @Injectable()
 export class BookingService {
