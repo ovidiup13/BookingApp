@@ -9,6 +9,7 @@ exports.booking_list = (req, res) => {
       res.send(
         JSON.stringify("An error occurred while processing your request.")
       );
+      console.error(err);
     }
     res.status(200);
     res.send(bookings);
@@ -24,6 +25,7 @@ exports.booking_detail = (req, res) => {
       res.send(
         JSON.stringify("An error occurred while processing your request.")
       );
+      console.error(err);
     } else if (booking == null) {
       res.status(404);
       res.send(JSON.stringify("Booking not found."));
@@ -41,6 +43,7 @@ exports.booking_create = (req, res) => {
     if (err) {
       res.status(500);
       res.send(JSON.stringify("Unable to create booking"));
+      console.error(err);
     } else {
       res.status(201);
       res.send(JSON.stringify("Successfully created booking"));
@@ -58,6 +61,7 @@ exports.booking_update = (req, res) => {
     if (err) {
       res.status(500);
       res.send(JSON.stringify("An error occurred when updating booking."));
+      console.error(err);
     } else {
       res.status(200);
       res.send(JSON.stringify("Sucessfully updated booking."));
@@ -71,6 +75,7 @@ exports.booking_delete = (req, res) => {
     if (err) {
       res.status(500);
       res.send(JSON.stringify("An error occurred when removing the booking."));
+      console.error(err);
     } else {
       res.status(200);
       res.send(JSON.stringify("Successfully removed booking."));
